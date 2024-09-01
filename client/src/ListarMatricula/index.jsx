@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react';
 import '../globals.css';
 
-export default function ReadMatriculas() {
-  const [matriculas, setMatriculas] = useState([]);
-
+export default function ReadVeiculos() {
+  const [veiculos, setVeiculos] = useState([]);
 
   useEffect(() => {
-    const fetchMatriculas = async () => {
+    const fetchVeiculos = async () => {
       try {
         const response = await fetch('http://localhost:5000/matriculas');
         const data = await response.json();
-        setMatriculas(data);
+        setVeiculos(data);
       } catch (error) {
         console.error('Erro ao buscar as matrículas:', error);
       }
     };
 
-    fetchMatriculas();
+    fetchVeiculos();
   }, []);
 
   const handleDelete = async (id) => {
@@ -25,8 +24,7 @@ export default function ReadMatriculas() {
         method: 'DELETE',
       });
       if (response.ok) {
-
-        setMatriculas(matriculas.filter((matricula) => matricula._id !== id));
+        setVeiculos(veiculos.filter((veiculo) => veiculo._id !== id));
         alert('Matrícula excluída com sucesso!');
       } else {
         alert('Erro ao excluir matrícula.');
@@ -38,26 +36,27 @@ export default function ReadMatriculas() {
 
   return (
     <div className='container'>
-      <h2>Lista de Matrículas</h2>
-      <table  className="table-container" border="1">
+      <h2>Lista de Veículos</h2>
+      <table className="table-container" border="1">
         <thead>
           <tr>
-            <th>Código Matrícula</th>
-            <th>Nome do Aluno</th>
-            <th>Turma</th>
-            <th>Curso</th>
-            <th>Ações</th>
+            <th>Código do Veículo</th>
+            <th>Nome do Veículo</th>
+            <th>Valor</th>
+            <th>Modelo</th>
+            <th>Marca</th>
           </tr>
         </thead>
         <tbody>
-          {matriculas.map((matricula) => (
-            <tr key={matricula._id}>
-              <td>{matricula._id}</td>
-              <td>{matricula.aluno}</td>
-              <td>{matricula.turma}</td>
-              <td>{matricula.curso}</td>
+          {veiculos.map((veiculos) => (
+            <tr key={veiculos._id}>
+              <td>{veiculos._id}</td>
+              <td>{veiculos.nome}</td>
+              <td>{veiculos.valor}</td>
+              <td>{veiculos.modelo}</td>
+              <td>{veiculos.marca}</td>
               <td>
-                <button onClick={() => handleDelete(matricula._id)}>Excluir</button>
+                <button onClick={() => handleDelete(veiculos._id)}>Excluir</button>
               </td>
             </tr>
           ))}

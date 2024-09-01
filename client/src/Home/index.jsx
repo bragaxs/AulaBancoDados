@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import '../globals.css';
 
-export default function Home() {
+export default function ListarVeiculos() {
     return (
         <div className='container'>
-            <h2>Sistema Acadêmico</h2>
+            <h2>Inserir Carros</h2>
             <div className="card-container">
-                <Link to="/matricula/cadastrar" className="card">
-                    <div>Registrar Matrícula</div>
+                <Link to="/CriarVeiculos" className="card">
+                    <div>Registrar Veiculos</div>
                 </Link>
-                <Link to="/matriculas" className="card">
-                    <div>Lista de Matrícula</div>
+                <Link to="/ListarMatricula" className="card">
+                    <div>Listar Veiculos</div>
                 </Link>
-                <Link to="/matriculas/alterar" className="card">
-                    <div>Editar Matrícula</div>
+                <Link to="/AlterarVeiculos" className="card">
+                    <div>Editar Veiculos</div>
                 </Link>
             </div>
         </div>

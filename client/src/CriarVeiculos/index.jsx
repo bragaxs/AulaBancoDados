@@ -4,14 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function CreateMatricula() {
-  const [aluno, setAluno] = useState('');
-  const [turma, setTurma] = useState('');
-  const [curso, setCurso] = useState('');
+  const [nome, setnome] = useState('');
+  const [valor, setvalor] = useState('');
+  const [modelo, setmodelo] = useState('');
+  const [marca, setmarca] = useState('');
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const novaMatricula = { aluno, turma, curso };
+    const novaMatricula = { nome, valor, modelo,marca };
 
     try {
       const response = await fetch('http://localhost:5000/matriculas', {
@@ -22,11 +23,11 @@ export default function CreateMatricula() {
         body: JSON.stringify(novaMatricula),
       });
       if (response.ok) {
-        alert('Matrícula criada com sucesso!');
-        setAluno('');
-        setTurma('');
-        setCurso('');
-        navigate("/matriculas");
+        alert('Veiculo Registrado Com Sucesso!');
+        setnome('');
+        setvalor('');
+        setmodelo('');
+        navigate("/veiculos");
       } else {
         alert('Erro ao criar matrícula.');
       }
@@ -38,29 +39,36 @@ export default function CreateMatricula() {
   return (
     <div className='container'>
     <form  className="form-container" onSubmit={handleSubmit}>
-      <h2>Criar Matrícula</h2>
+      <h2>Registar Veiculo</h2>
       <input
         type="text"
-        placeholder="Nome do Aluno"
-        value={aluno}
-        onChange={(e) => setAluno(e.target.value)}
+        placeholder="Nome do Veiculo"
+        value={nome}
+        onChange={(e) => setnome(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Turma"
-        value={turma}
-        onChange={(e) => setTurma(e.target.value)}
+        placeholder="Valor do Veiculo"
+        value={valor}
+        onChange={(e) => setvalor(e.target.value)}
         required
       />
       <input
         type="text"
-        placeholder="Curso"
-        value={curso}
-        onChange={(e) => setCurso(e.target.value)}
+        placeholder="Modelo do Veiculo"
+        value={modelo}
+        onChange={(e) => setmodelo(e.target.value)}
         required
       />
-      <button type="submit">Criar Matrícula</button>
+      <input
+        type="text"
+        placeholder="Marca do Veiculo"
+        value={modelo}
+        onChange={(e) => setmodelo(e.target.value)}
+        required
+      />
+      <button type="submit">Criar Registro de Veiculo</button>
     </form>
     </div>
   );
