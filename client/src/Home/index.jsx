@@ -1,20 +1,24 @@
 import { Link } from 'react-router-dom';
 import '../globals.css';
 
-export default function ListarVeiculos() {
+export default function Home() {
     return (
-        <div className='container'>
-            <h2>Inserir Carros</h2>
-            <div className="card-container">
-                <Link to="/CriarVeiculos" className="card">
-                    <div>Registrar Veiculos</div>
-                </Link>
-                <Link to="/ListarMatricula" className="card">
-                    <div>Listar Veiculos</div>
-                </Link>
-                <Link to="/AlterarVeiculos" className="card">
-                    <div>Editar Veiculos</div>
-                </Link>
+        <div class="imagem-container">
+            <div id="imagem">
+            </div>
+            <div className='container-imagem'>
+                <h2>Concessionária</h2>
+                <div className="card-container">
+                    <Link to="/carro/cadastrar" className="card">
+                        <div>Registrar Carro</div>
+                    </Link>
+                    <Link to="/carros" className="card">
+                        <div>Lista de Carros</div>
+                    </Link>
+                    <Link to="/carros/alterar" className="card">
+                        <div>Editar Carro</div>
+                    </Link>
+                </div>
             </div>
         </div>
     );
